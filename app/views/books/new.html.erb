@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row mt-3 col-10">
+<h1>New book</h1>
+</div>
+<div class="from">
+<%= form_with model: @book do |f| %>
+<div class="form-group">
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  </div>
+<div class="form-group">
+  <h4>Opinion</h4>
+  <%= f.text_area :body %><br>
+  </div>
+
+  <%= f.submit 'Create Book', class: "btn btn-success btn-sm mt-2" %>
+<% end %>
+</div>
+</div>
