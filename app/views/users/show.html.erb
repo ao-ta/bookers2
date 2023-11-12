@@ -3,6 +3,7 @@
     <div class="col-md-3">
 
     <%= render 'books/left', user: @user, book: @book %>
+    </div>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -14,7 +15,25 @@
         <tr><td><%= link_to user_path(book.user) do %><%= image_tag @user.get_profile_image(70,70) %><% end %>
         </td>
         <td> <%= link_to book_path(book.id) do %><%= book.title %><% end %></td>
-        <td><%= book.body %></td></tr>
+        <td><%= book.body %></td>
+        <td><% if book.favorited_by?(current_user) %>
+    <p>
+      <%= link_to book_favorites_path(book), method: :delete do %>
+        <i class="fa-solid fa-heart red" style="color:red"><%= book.favorites.count %></i>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to book_favorites_path(book), method: :post do %>
+        <i class="fa-solid fa-heart" style="color:bluewhite"><%= book.favorites.count %></i>
+      <% end %>
+    </p>
+  <% end %>
+        </td>
+        <td>
+    <p>コメント数：<%= book.book_comments.count %></p>
+    </td>
+    </tr>
       <% end %>
       </table>
     </div>
